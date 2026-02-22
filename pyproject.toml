@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A modern, fully-typed Python API wrapper for Emby."
 authors = [{ name = "klann" }]
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "httpx>=0.28.1",
     "mypy>=1.19.1",
