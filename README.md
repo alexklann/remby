@@ -2,6 +2,9 @@
 
 A modern, fully-typed Python API wrapper for Emby Server. 
 
+> `remby` is actively developed on [Codeberg](https://codeberg.org/klann/remby).  
+> If you're seeing this on GitHub, then please note that issues and PRs will not be checked or merged.
+
 Built with Pydantic V2 and HTTPX, `remby` provides strict type hinting, automatic JSON validation and a clean interface for interacting with your Emby media server.
 
 ## Features
@@ -50,7 +53,7 @@ This project uses `uv` for dependency management and `pytest` for testing.
 
 ```bash
 # Clone the repository
-git clone [https://codeberg.org/klann/remby.git](https://codeberg.org/klann/remby.git)
+git clone https://codeberg.org/klann/remby.git
 cd remby
 
 # Run the test suite

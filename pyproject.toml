@@ -2,6 +2,7 @@
 name = "remby"
 version = "0.1.0"
 description = "A modern, fully-typed Python API wrapper for Emby."
+keywords = ["Emby", "API", "Wrapper", "Media"]
 authors = [{ name = "klann" }]
 readme = "README.md"
 requires-python = ">=3.12"
@@ -12,6 +13,10 @@ dependencies = [
     "pytest>=9.0.2",
     "respx>=0.22.0",
 ]
+
+[project.urls]
+Repository = "https://codeberg.org/klann/remby.git"
+Issues = "https://codeberg.org/klann/remby/issues"
 
 [dependency-groups]
 dev = ["datamodel-code-generator>=0.54.0", "ruff>=0.15.2"]
