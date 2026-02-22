@@ -2,6 +2,8 @@ from typing import Any
 
 import httpx
 
+from remby.api.items import ItemsModule
+from remby.api.users import UsersModule
 from remby.exceptions import AuthenticationError, EmbyException
 from remby.api.system import SystemModule
 
@@ -20,6 +22,8 @@ class EmbyClient:
         )
         
         self.system = SystemModule(self)
+        self.items = ItemsModule(self)
+        self.users = UsersModule(self)
     
     def request(self, method: str, endpoint: str, **kwargs: Any) -> httpx.Response:
         try:
