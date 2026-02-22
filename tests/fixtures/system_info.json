@@ -1,0 +1,53 @@
+{
+    "SystemUpdateLevel": "Release",
+    "OperatingSystemDisplayName": "OS",
+    "PackageName": "Package",
+    "HasPendingRestart": false,
+    "IsShuttingDown": false,
+    "HasImageEnhancers": false,
+    "OperatingSystem": "OS",
+    "SupportsLibraryMonitor": false,
+    "SupportsLocalPortConfiguration": false,
+    "SupportsWakeServer": false,
+    "WebSocketPortNumber": 1111,
+    "CompletedInstallations": [
+        {
+            "Id": "1",
+            "Name": "Installation",
+            "AssemblyGuid": "abc-123",
+            "Version": "1.0.0",
+            "UpdateClass": "Release",
+            "PercentComplete": 100
+        }
+    ],
+    "CanSelfRestart": true,
+    "CanSelfUpdate": true,
+    "CanLaunchWebBrowser": true,
+    "ProgramDataPath": "/etc/",
+    "ItemsByNamePath": "/var/",
+    "CachePath": "~/cache",
+    "LogPath": "~/logs",
+    "InternalMetadataPath": "~/metadata",
+    "TranscodingTempPath": "~/transcoding",
+    "HttpServerPortNumber": 1111,
+    "SupportsHttps": true,
+    "HttpsPortNumber": 1111,
+    "HasUpdateAvailable": false,
+    "SupportsAutoRunAtStartup": true,
+    "HardwareAccelerationRequiresPremiere": false,
+    "WakeOnLanInfo": [
+        {
+            "MacAddress": "00:00:00:00:00:00:00",
+            "BroadcastAddress": "0.0.0.0",
+            "Port": 1111
+        }
+    ],
+    "IsInMaintenanceMode": false,
+    "LocalAddress": "127.0.0.1",
+    "LocalAddresses": [],
+    "WanAddress": "127.0.0.1",
+    "RemoteAddresses": [],
+    "ServerName": "Server",
+    "Version": "1.0.0",
+    "Id": "1"
+}

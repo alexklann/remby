@@ -1,0 +1,21 @@
+[project]
+name = "remby"
+version = "0.1.0"
+description = "A modern, fully-typed Python API wrapper for Emby."
+authors = [{ name = "klann" }]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "httpx>=0.28.1",
+    "mypy>=1.19.1",
+    "pydantic>=2.12.5",
+    "pytest>=9.0.2",
+    "respx>=0.22.0",
+]
+
+[dependency-groups]
+dev = ["datamodel-code-generator>=0.54.0", "ruff>=0.15.2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
