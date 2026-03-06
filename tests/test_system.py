@@ -29,8 +29,8 @@ def test_get_system_endpoint():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_endpoint()
 
-    assert result.is_local is True
-    assert result.is_in_network is True
+    assert result.data.is_local is True
+    assert result.data.is_in_network is True
 
 @respx.mock
 def test_get_system_endpoint_unauthorized():
@@ -54,13 +54,13 @@ def test_get_system_info():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_info()
 
-    assert result is not None 
+    assert result.data is not None 
     
-    assert result.system_update_level == PackageVersionClass(root="Release")
+    assert result.data.system_update_level == PackageVersionClass(root="Release")
     
-    assert result.completed_installations is not None
-    assert len(result.completed_installations) == 1
-    assert result.completed_installations[0].name == "Installation"
+    assert result.data.completed_installations is not None
+    assert len(result.data.completed_installations) == 1
+    assert result.data.completed_installations[0].name == "Installation"
 
 @respx.mock
 def test_get_system_info_public():
@@ -78,10 +78,10 @@ def test_get_system_info_public():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_info_public()
 
-    assert result.local_address == "127.0.0.1"
-    assert result.local_addresses is not None
-    assert len(result.local_addresses) == 1
-    assert result.server_name == "Server"
+    assert result.data.local_address == "127.0.0.1"
+    assert result.data.local_addresses is not None
+    assert len(result.data.local_addresses) == 1
+    assert result.data.server_name == "Server"
 
 @respx.mock
 def test_get_system_logs_by_name():
@@ -112,10 +112,10 @@ def test_get_system_logs_line_by_name():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_logs_lines_by_name(name=target_log)
 
-    assert result is not None
-    assert result.items is not None
-    assert result.total_record_count == 2
-    assert len(result.items) == 2
+    assert result.data is not None
+    assert result.data.items is not None
+    assert result.data.total_record_count == 2
+    assert len(result.data.items) == 2
 
 @respx.mock
 def test_get_system_logs_query():
@@ -132,10 +132,10 @@ def test_get_system_logs_query():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_logs_query()
 
-    assert result is not None
-    assert result.items is not None
-    assert result.total_record_count == 2
-    assert len(result.items) == 2
+    assert result.data is not None
+    assert result.data.items is not None
+    assert result.data.total_record_count == 2
+    assert len(result.data.items) == 2
 
 @respx.mock
 def test_get_system_releasenotes_no_content():
@@ -146,7 +146,7 @@ def test_get_system_releasenotes_no_content():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_releasenotes()
 
-    assert result is None
+    assert result.data is None
 
 @respx.mock
 def test_get_system_releasenotes():
@@ -160,9 +160,9 @@ def test_get_system_releasenotes():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_releasenotes()
 
-    assert result is not None
-    assert result.version_str == "1.0.0"
-    assert result.description == "Initial Release"
+    assert result.data is not None
+    assert result.data.version_str == "1.0.0"
+    assert result.data.description == "Initial Release"
 
 @respx.mock
 def test_get_system_releasenotes_versions():
@@ -179,12 +179,12 @@ def test_get_system_releasenotes_versions():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_releasenotes_versions()
 
-    assert result is not None
-    assert len(result) == 1
+    assert result.data is not None
+    assert len(result.data) == 1
 
-    assert result[0].name == "1.0.0-Beta"
-    assert result[0].version_str == "1.0.0"
-    assert result[0].classification == PackageVersionClass(root="Beta")
+    assert result.data[0].name == "1.0.0-Beta"
+    assert result.data[0].version_str == "1.0.0"
+    assert result.data[0].classification == PackageVersionClass(root="Beta")
 
 @respx.mock
 def test_get_system_wakeonlaninfo():
@@ -201,12 +201,12 @@ def test_get_system_wakeonlaninfo():
     with EmbyClient(base_url="http://localhost:8096", api_key="dummy") as client:
         result = client.system.get_system_wakeonlaninfo()
 
-    assert result is not None
-    assert len(result) == 1
+    assert result.data is not None
+    assert len(result.data) == 1
 
-    assert result[0].mac_address == "0A0A0A0A0A0A"
-    assert result[0].broadcast_address == "255.255.255.255"
-    assert result[0].port == 9
+    assert result.data[0].mac_address == "0A0A0A0A0A0A"
+    assert result.data[0].broadcast_address == "255.255.255.255"
+    assert result.data[0].port == 9
 
 @respx.mock
 def test_head_system_ping():

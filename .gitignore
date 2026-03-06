@@ -17,3 +17,6 @@ wheels/
 openapi.json
 
 codebase.txt
+
+final_fixture.json
+params.json

@@ -5,6 +5,7 @@ from pydantic import TypeAdapter
 from remby._api.base import BaseModule
 from remby.models.emby.Net import EndPointInfo
 from remby.models.emby._internal import PackageVersionInfo, PublicSystemInfo, QueryResultString, SystemInfo, WakeOnLanInfo
+from remby.models.response import EmbyResponse
 
 class SystemModule(BaseModule):
     def get_system_ping(self) -> str:
@@ -21,7 +22,7 @@ class SystemModule(BaseModule):
         
         return response.text
     
-    def get_system_endpoint(self) -> EndPointInfo:
+    def get_system_endpoint(self) -> EmbyResponse[EndPointInfo]:
         """
         GET /System/Endpoint
 
@@ -32,10 +33,10 @@ class SystemModule(BaseModule):
         """
         endpoint = "/System/Endpoint"
         response = self._client.request("GET", endpoint)
-        
-        return EndPointInfo.model_validate(response.json())
+        data = EndPointInfo.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
     
-    def get_system_info(self) -> SystemInfo:
+    def get_system_info(self) -> EmbyResponse[SystemInfo]:
         """
         GET /System/Info
 
@@ -46,10 +47,10 @@ class SystemModule(BaseModule):
         """
         endpoint = "/System/Info"
         response = self._client.request("GET", endpoint)
-        
-        return SystemInfo.model_validate(response.json())
+        data = SystemInfo.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
     
-    def get_system_info_public(self) -> PublicSystemInfo:
+    def get_system_info_public(self) -> EmbyResponse[PublicSystemInfo]:
         """
         GET /System/Info/Public
 
@@ -60,8 +61,8 @@ class SystemModule(BaseModule):
         """
         endpoint = "/System/Info/Public"
         response = self._client.request("GET", endpoint)
-        
-        return PublicSystemInfo.model_validate(response.json()) 
+        data = PublicSystemInfo.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
     
     def get_system_logs_by_name(self, name: str) -> str:
         """
@@ -77,7 +78,7 @@ class SystemModule(BaseModule):
         
         return response.text
     
-    def get_system_logs_lines_by_name(self, name: str, start_index: int = 0, limit: int = 100) -> QueryResultString:
+    def get_system_logs_lines_by_name(self, name: str, start_index: int = 0, limit: int = 100) -> EmbyResponse[QueryResultString]:
         """
         GET /System/Logs/{name}/Lines
 
@@ -96,9 +97,10 @@ class SystemModule(BaseModule):
             "Limit": limit
         })
         
-        return QueryResultString.model_validate(response.json())
+        data = QueryResultString.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
 
-    def get_system_logs_query(self, start_index: int = 0, limit: int = 100) -> QueryResultString:
+    def get_system_logs_query(self, start_index: int = 0, limit: int = 100) -> EmbyResponse[QueryResultString]:
         """
         GET /System/Logs/Query
 
@@ -113,9 +115,10 @@ class SystemModule(BaseModule):
             "Limit": limit
         })
         
-        return QueryResultString.model_validate(response.json())
+        data = QueryResultString.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
 
-    def get_system_releasenotes(self) -> Optional[PackageVersionInfo]:
+    def get_system_releasenotes(self) -> EmbyResponse[Optional[PackageVersionInfo]]:
         """
         GET /System/ReleaseNotes
 
@@ -129,11 +132,12 @@ class SystemModule(BaseModule):
         response = self._client.request("GET", endpoint)
 
         if response.status_code == 204:
-            return None
+            return EmbyResponse.from_httpx(response, None)
         
-        return PackageVersionInfo.model_validate(response.json())
+        data = PackageVersionInfo.model_validate(response.json())
+        return EmbyResponse.from_httpx(response, data)
     
-    def get_system_releasenotes_versions(self) -> Optional[List[PackageVersionInfo]]:
+    def get_system_releasenotes_versions(self) -> EmbyResponse[Optional[List[PackageVersionInfo]]]:
         """
         GET /System/ReleaseNotes/Versions
 
@@ -146,13 +150,13 @@ class SystemModule(BaseModule):
         response = self._client.request("GET", endpoint)
 
         if response.status_code == 204:
-            return None
+            return EmbyResponse.from_httpx(response, None)
 
         adapter = TypeAdapter(List[PackageVersionInfo])
-        
-        return adapter.validate_python(response.json())
+        data = adapter.validate_python(response.json())
+        return EmbyResponse.from_httpx(response, data)
 
-    def get_system_wakeonlaninfo(self) -> Optional[List[WakeOnLanInfo]]:
+    def get_system_wakeonlaninfo(self) -> EmbyResponse[Optional[List[WakeOnLanInfo]]]:
         """
         GET /System/WakeOnLanInfo
 
@@ -165,11 +169,11 @@ class SystemModule(BaseModule):
         response = self._client.request("GET", endpoint)
         
         if response.status_code == 204:
-            return None
+            return EmbyResponse.from_httpx(response, None)
 
         adapter = TypeAdapter(List[WakeOnLanInfo])
-
-        return adapter.validate_python(response.json())
+        data = adapter.validate_python(response.json())
+        return EmbyResponse.from_httpx(response, data)
 
     def head_system_ping(self) -> bool:
         """

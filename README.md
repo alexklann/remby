@@ -1,5 +1,7 @@
 # remby
 
+[![Build Status](https://codeberg.org/klann/remby/actions/workflows/test.yml/badge.svg)](https://codeberg.org/klann/remby/actions)
+
 A modern, fully-typed Python API wrapper for Emby Server. 
 
 > `remby` is actively developed on [Codeberg](https://codeberg.org/klann/remby).  
