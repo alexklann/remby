@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 import respx
 from httpx import Response
-from remby.client import EmbyClient
+from remby import EmbyClient
 from remby.exceptions import AuthenticationError
 from remby.models.emby._internal import PackageVersionClass
 

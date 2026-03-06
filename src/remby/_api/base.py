@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from remby.client import EmbyClient
+    from remby._client import EmbyClient
 
 class BaseModule:
     def __init__(self, client: "EmbyClient") -> None:

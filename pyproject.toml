@@ -24,3 +24,9 @@ dev = ["datamodel-code-generator>=0.54.0", "ruff>=0.15.2"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+"remby" = ["py.typed"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

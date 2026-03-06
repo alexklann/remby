@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import TypeAdapter
 
-from remby.api.base import BaseModule
+from remby._api.base import BaseModule
 from remby.models.emby.Net import EndPointInfo
 from remby.models.emby._internal import PackageVersionInfo, PublicSystemInfo, QueryResultString, SystemInfo, WakeOnLanInfo
 

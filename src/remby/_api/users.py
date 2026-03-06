@@ -1,6 +1,6 @@
 from typing import List
 
-from remby.api.base import BaseModule
+from remby._api.base import BaseModule
 from remby.models.emby._internal import UserDto
 
 

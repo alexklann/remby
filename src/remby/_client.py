@@ -1,16 +1,21 @@
 from typing import Any
-
+import logging
 import httpx
 
-from remby.api.items import ItemsModule
-from remby.api.users import UsersModule
+from remby._api.items import ItemsModule
+from remby._api.users import UsersModule
 from remby.exceptions import AuthenticationError, EmbyException
-from remby.api.system import SystemModule
+from remby._api.system import SystemModule
 
 class EmbyClient:
-    def __init__(self, base_url: str, api_key: str) -> None:
+    def __init__(self, base_url: str, api_key: str, debug: bool = False) -> None:
         self.base_url = base_url
         self.api_key = api_key
+
+        if debug:
+            logging.basicConfig(level=logging.DEBUG)
+            logging.getLogger("httpx").setLevel(logging.DEBUG)
+            logging.getLogger("httpcore").setLevel(logging.DEBUG)
         
         self._session = httpx.Client(
             base_url=self.base_url,

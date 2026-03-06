@@ -45,7 +45,9 @@ with EmbyClient(base_url="http://localhost:8096", api_key="YOUR_API_KEY") as cli
 ```
 
 ## Currently Supported Endpoints
-- `/System`: Server info, logs, restarting and pings (100%)
+- `SystemService`: Server info, logs, restarting and pings (100%!)
+- `ItemsServce`: Item gathering, user items, user resumes (100%!)
+- `UserService`: User CRUD operations, user info (5%)
 
 ## Development
 
