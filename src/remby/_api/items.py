@@ -29,14 +29,6 @@ def _paginate_items(fetch: Callable[..., Any], start: int = 0, page_size: int = 
 
 class ItemsModule(BaseModule):
     def get_items(self, query: GetItemRequest) -> EmbyResponse[QueryResultBaseItemDto]:
-        """
-        GET /Items
-
-        Get an item based on a query.
-
-        Returns:
-            * **200 OK**: Returns the fetched object.
-        """
         endpoint = "/Items"
         response = self._client.request("GET", endpoint, params=query.model_dump(by_alias=True, exclude_none=True))
         data = QueryResultBaseItemDto.model_validate(response.json())
@@ -53,14 +45,6 @@ class ItemsModule(BaseModule):
         )
     
     def get_users_by_userid_items(self, user_id: str, query: GetItemRequest) -> EmbyResponse[QueryResultBaseItemDto]:
-        """
-        GET /Users/{UserId}/Items
-
-        Appears to get items for a specific user account by UserId.
-
-        Returns:
-            * **200 OK**: Returns a list of items associated with this user.
-        """
         endpoint = f"/Users/{user_id}/Items"
         response = self._client.request("GET", endpoint, params=query.model_dump(by_alias=True, exclude_none=True))
         data = QueryResultBaseItemDto.model_validate(response.json())
@@ -78,14 +62,6 @@ class ItemsModule(BaseModule):
         )
     
     def get_users_by_userid_items_resume(self, user_id: str, query: GetItemRequest) -> EmbyResponse[QueryResultBaseItemDto]:
-        """
-        GET /Users/{UserId}/Items
-
-        Gets items that are on the "Continue Watching" list for a specific user.
-
-        Returns:
-            * **200 OK**: Returns a list of items on resume.
-        """
         endpoint = f"/Users/{user_id}/Items/Resume"
         response = self._client.request("GET", endpoint, params=query.model_dump(by_alias=True, exclude_none=True))
         data = QueryResultBaseItemDto.model_validate(response.json())
